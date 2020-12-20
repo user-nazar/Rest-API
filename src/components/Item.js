@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {
     BottomPart,
     ItemInfo,
@@ -10,20 +10,21 @@ import {
     DescriptionStyles,
 
 } from "../styles/ItemStyles";
-import { useLocation, Redirect } from "react-router-dom";
-import { Image } from "antd";
+import {useLocation, useHistory} from "react-router-dom";
+import {Image} from "antd";
 import description from "./UtilsInfo";
-import { fetchDataById, patchData } from "../CRUD";
+import {fetchDataById, patchData} from "../CRUD";
 import ProcessOfLoading from "./ProcessOfLoading";
-
+import {useDispatch} from "react-redux";
+import {createItem} from "./redux/Action";
 
 const Item = () => {
     const [item, setItem] = useState({});
-    const [redirect, setRedirect] = useState(false);
-
+    const dispatch = useDispatch()
     const location = useLocation();
     const totalPrice = useRef(null);
 
+    let history = useHistory();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -35,7 +36,7 @@ const Item = () => {
                 patchData(foundItem);
             })
             .catch(() => {
-                console.log("Elements failed");
+                console.log("Error download");
             });
     }, []);
 
@@ -47,14 +48,26 @@ const Item = () => {
     }, [item]);
 
 
+    const goToCard = () => {
+        dispatch(
+            createItem({
+                id: item.id,
+                name: item.name,
+                price: totalPrice.current,
+                imageOfPlayer: item.imageOfPlayer,
+                number: 1,
+            })
+        );
+    };
+
     if (Object.keys(item).length === 0) {
-        return <ProcessOfLoading />;
+        return <ProcessOfLoading/>;
     }
 
     return (
         <StyledItem>
             <TopPart>
-                <Image src={item.imageOfPlayer} />
+                <Image src={item.imageOfPlayer}/>
                 <ItemInfo>
                     <NameStyles>{item.name}</NameStyles>
 
@@ -63,15 +76,16 @@ const Item = () => {
                 </ItemInfo>
             </TopPart>
             <BottomPart>
-                <StyledPrice>Price: {item.price}  euro</StyledPrice>
+                <StyledPrice>Price: {item.price} euro</StyledPrice>
                 <ButtonItemStyles
-                    onClick={() => setRedirect(true)}
+                    onClick={history.goBack}
                 >
                     Return
                 </ButtonItemStyles>
-                {redirect && <Redirect push to="/catalog" />}
-                <ButtonItemStyles>
-                    Add
+
+                <ButtonItemStyles onClick={goToCard}>
+
+                    Add a new card
                 </ButtonItemStyles>
             </BottomPart>
         </StyledItem>

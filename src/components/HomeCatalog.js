@@ -33,17 +33,16 @@ const HomeCatalog = () => {
         setIsShowMore(false);
     };
 
-
     return (
         <CatalogContainer>
-            <TitleStyles>Choose a debutant from the list:</TitleStyles>
+            <TitleStyles>Choose a debutant from this list:</TitleStyles>
             <ContainerCards>
                 <ContainerItem products={data} currentView="card"/>
             </ContainerCards>
             {!isShowMore && (
                 <ButtonStyles onClick={() => showMore()}>View More</ButtonStyles>
             )}
-            {isShowMore && <ButtonStyles onClick={showLess}>Collapse</ButtonStyles>}
+            {isShowMore && <ButtonStyles onClick={showLess}>Hidden</ButtonStyles>}
         </CatalogContainer>
     );
 };

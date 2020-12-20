@@ -20,7 +20,7 @@ const Card = ({player}) => {
                 cover={<CardImage alt="Player" src={player.imageOfPlayer}/>}
             >
                 <Footer>
-                    <MetaStyles title={player.name}/>
+                    <MetaStyles title={player.name} description={player.description}/>
                     <TextStyles>Price: {player.price} euro</TextStyles>
                     <AllInfo player={player}/>
                 </Footer>
@@ -37,10 +37,10 @@ const AllInfo = ({player}) => {
     let history = useHistory();
 
     return (
-        <div>
+        <React.Fragment>
             <ButtonStyles onClick={() => setVisible(true)}>View More</ButtonStyles>
             <MoreInfo height={visible ? 1 : 0}>
-                <MetaStyles name={player.name} description={description(player)}/>
+                <MetaStyles title={player.title} description={description(player)}/>
                 <ButtonStyles
                     onClick={() => {
                         history.push(`/item?id=${player.id}`);
@@ -53,9 +53,9 @@ const AllInfo = ({player}) => {
                         setVisible(false);
                     }}
                 >
-                    Hidden
+                    Collapse
                 </ButtonLessStyles>
             </MoreInfo>
-        </div>
+        </React.Fragment>
     );
 };

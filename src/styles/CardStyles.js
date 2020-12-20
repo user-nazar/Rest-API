@@ -63,7 +63,7 @@ export const TextStyles = styled.p`
   color: black;
   text-align: center;
   letter-spacing: 5px;
-  margin-top: 36%;
+  margin-top: 21%;
   margin-bottom: 0px;
 `;
 

@@ -16,6 +16,7 @@ import {
     Route,
     NavLink,
 } from "react-router-dom";
+import ThisCard from "./ThisCard";
 
 const Navigation = () => {
     return (
@@ -45,10 +46,10 @@ const Navigation = () => {
                         </NavLink>
                     </MenuItem>
                     <MenuItem>
-                        <NavLink exact to="/card"
+                        <NavLink exact to="/this card"
                                  activeClassName="selected"
                                  style={{textDecoration: "none", color: "white"}}>
-                            CARD
+                            This Card
                         </NavLink>
                     </MenuItem>
                 </MenuStyles>
@@ -56,8 +57,8 @@ const Navigation = () => {
                     <Route path="/catalog">
                         <Catalog/>
                     </Route>
-                    <Route path="/card">
-                        <div>Card</div>
+                    <Route path="/this card">
+                        <ThisCard/>
                     </Route>
                     <Route path="/item">
                         <Item/>
