@@ -4,7 +4,7 @@ import {
     CartContainer,
     TitleStyled,
     TotalPriceStyled,
-    ButtonOnCart,
+    ButtonOnNewCard,
     Footer,
 } from "../styles/ThisCardStyles";
 import {useHistory} from "react-router-dom";
@@ -20,14 +20,14 @@ const ThisCard = () => {
 
     return (
         <CartContainer>
-            <TitleStyled>🛒</TitleStyled>
+            <TitleStyled> The winter transfer window is open. Buy football players!</TitleStyled>
             {select.orders.map((value) => {
                 return <NewCard value={value}/>;
             })}
 
             <Footer>
-                <ButtonOnCart onClick={history.goBack}>Return</ButtonOnCart>
-                <ButtonOnCart onClick={handleClick}>Next</ButtonOnCart>
+                <ButtonOnNewCard onClick={history.goBack}>Return</ButtonOnNewCard>
+                <ButtonOnNewCard onClick={handleClick}>Next</ButtonOnNewCard>
             </Footer>
         </CartContainer>
     );

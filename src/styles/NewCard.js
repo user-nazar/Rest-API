@@ -3,7 +3,7 @@ import { MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "antd";
 
-export const CardUI = styled.div`
+export const CardStyles = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,7 +26,7 @@ export const CardImage = styled.img`
     box-shadow: 0 0 7px #666;
 `;
 
-export const TextStyled = styled.p`
+export const TextStyles = styled.p`
   font-size: 24px;
   color: #00000;
   text-align: center;
@@ -40,7 +40,7 @@ export const StyledCounter = styled.div`
   margin-left: 100px;
 `;
 
-export const PlusStyled = styled(PlusSquareOutlined)`
+export const PlusStyles = styled(PlusSquareOutlined)`
   font-size: 32px;
   color: #00000;
   transition: 0.3s;
@@ -49,7 +49,7 @@ export const PlusStyled = styled(PlusSquareOutlined)`
   }
 `;
 
-export const MinusStyled = styled(MinusSquareOutlined)`
+export const MinusStyles = styled(MinusSquareOutlined)`
   font-size: 32px;
   color: #00000;
   transition: 0.3s;

@@ -36,7 +36,7 @@ export const MenuItem = styled.li`
   }
 `;
 
-export const team = styled.img`
+export const first_image = styled.img`
   position: absolute;
   left: 100px;
   top: 0px;

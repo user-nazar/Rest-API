@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from "react";
-import LoadingElement from "./ProcessOfLoading";
-import { CenterContainer, MessegeInfo } from "../styles/ProcessOfLoadingStyles";
+import React, {useEffect, useState} from "react";
+import LoadingElement from "./Downloading";
+import {CenterContainer, MessegeInfo} from "../styles/ProcessOfLoadingStyles";
 
 const ProcessOfLoading = ({
-                         title = "Not Found",
-                         description = "Please try again later",
-                     }) => {
+                              name = "error",
+                          }) => {
     const [load, setLoad] = useState(false);
     useEffect(() => {
-        let myTimeout = setTimeout(() => {
+        let timeOfProcessing = setTimeout(() => {
             setLoad(true);
         }, 7000);
+        console.log(load);
         return function cleanUp() {
-            clearTimeout(myTimeout);
+            clearTimeout(timeOfProcessing);
         };
     }, []);
     if (!load) {
-        return <LoadingElement />;
+        return <LoadingElement/>;
     }
     return (
         <CenterContainer>
-            <MessegeInfo>{title}</MessegeInfo>
-            <MessegeInfo>{description}</MessegeInfo>
+            <MessegeInfo>{name}</MessegeInfo>
         </CenterContainer>
     );
 };

@@ -35,7 +35,7 @@ export const Footer = styled.div`
   max-width: 1160px;
 `;
 
-export const ButtonOnCart = styled(ButtonStyles)`
+export const ButtonOnNewCard = styled(ButtonStyles)`
   width: 200px;
   margin: 0px;
 `;

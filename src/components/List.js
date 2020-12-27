@@ -21,6 +21,6 @@ export const setImages = (initialData) => {
                 break;
         }
     });
-    console.log("check", initialData);
+    console.log("checking image", initialData);
     return initialData;
 };

@@ -1,22 +1,13 @@
 import React, {useState, useEffect, useRef} from "react";
-import {
-    BottomPart,
-    ItemInfo,
-    StyledItem,
-    StyledPrice,
-    TopPart,
-    ButtonItemStyles,
-    NameStyles,
-    DescriptionStyles,
 
-} from "../styles/ItemStyles";
 import {useLocation, useHistory} from "react-router-dom";
 import {Image} from "antd";
-import description from "./UtilsInfo";
-import {fetchDataById, patchData} from "../CRUD";
-import ProcessOfLoading from "./ProcessOfLoading";
 import {useDispatch} from "react-redux";
-import {createItem} from "./redux/Action";
+import {fetchDataById, patchData} from "../CRUD";
+import {createItem} from "../components/redux/Action";
+import ProcessOfLoading from "../components/ProcessOfLoading";
+import {BottomPart, ButtonItemStyles, DescriptionStyles, ItemInfo, NameStyles, StyledItem, StyledPrice, TopPart} from "./ItemStyles";
+import description from "../components/UtilsInfo";
 
 const Item = () => {
     const [item, setItem] = useState({});

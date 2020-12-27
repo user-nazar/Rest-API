@@ -1,29 +1,28 @@
 import React from "react";
-import Home from "../pages/Home";
-import Catalog from "../pages/Catalog";
-import Item from "./Item";
-import Footer from "./Footer";
-import {
-    MenuStyles,
-    MenuItem,
-    team,
-    ContainerStyles,
-} from "../styles/NavigationStyles";
-import logo from "../image/team.jpg";
+
+import logo from "../image/first_image.jpg";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     NavLink,
 } from "react-router-dom";
-import ThisCard from "./ThisCard";
+
+import Checkout from "../pages/Checkout";
+import Success from "../pages/Success";
+import {ContainerStyles, first_image, MenuStyles, MenuItem} from "../styles/NavigationStyles";
+import Catalog from "../pages/Catalog";
+import ThisCard from "../pages/ThisCard";
+import Item from "../pages/Item";
+import Home from "../pages/Home";
+import Footer from "./Footer";
 
 const Navigation = () => {
     return (
         <ContainerStyles>
             <Router>
                 <MenuStyles>
-                    <team src={logo}/>
+                    <first_image src={logo}/>
 
                     <MenuItem>
                         <NavLink
@@ -46,30 +45,34 @@ const Navigation = () => {
                         </NavLink>
                     </MenuItem>
                     <MenuItem>
-                        <NavLink exact to="/this card"
+                        <NavLink exact to="/card"
                                  activeClassName="selected"
                                  style={{textDecoration: "none", color: "white"}}>
-                            This Card
+                            CARD
                         </NavLink>
                     </MenuItem>
                 </MenuStyles>
                 <Switch>
                     <Route path="/catalog">
-                        <Catalog/>
+                        <Catalog />
                     </Route>
-                    <Route path="/this card">
-                        <ThisCard/>
+                    <Route path="/card">
+                        <ThisCard />
                     </Route>
                     <Route path="/item">
-                        <Item/>
+                        <Item />
                     </Route>
-
-
+                    <Route path="/checkout">
+                        <Checkout />
+                    </Route>
+                    <Route path="/success">
+                        <Success />
+                    </Route>
                     <Route path="/">
-                        <Home/>
+                        <Home />
                     </Route>
                 </Switch>
-                <Footer/>
+                <Footer />
             </Router>
         </ContainerStyles>
     );

@@ -1,74 +1,85 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     CardStyles,
-    MinusStyled,
-    PlusStyled,
+    MinusStyles,
+    PlusStyles,
     CardImage,
-    TextStyled,
+    TextStyles,
     StyledCounter,
     Cross,
     ButtonSmall,
-} from "../styles/ReservedItemStyles";
-import {useDispatch} from "react-redux";
+} from "../styles/ThisCardStyles";
+import { useDispatch } from "react-redux";
 import {
     deleteItem,
     updateItem,
 } from "./redux/Action";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 
-const NewCard = ({value}) => {
-    const [item, setElement] = useState(value);
+const AddedCard = ({ value }) => {
+    const [element, setElement] = useState(value);
     const dispatch = useDispatch();
+    let history = useHistory();
+
     useEffect(() => {
         setElement(value);
     }, [value]);
-    const reduceItemNumber = () => {
-        if (item.number === 1) {
+
+    const reduceItemNumber = (event) => {
+        event.stopPropagation();
+        if (element.number === 1) {
             return;
         }
         const newElement = {
-            ...item,
-            number: item.number - 1,
-            price: (item.price / item.number) * (item.number - 1),
+            ...element,
+            number: element.number - 1,
+            price: (element.price / element.number) * (element.number - 1),
         };
         setElement(newElement);
         dispatch(updateItem(newElement));
     };
 
-    const increaseItemNumber = () => {
-        if (item.number === 20) {
+    const increaseItemNumber = (event) => {
+        event.stopPropagation();
+        if (element.number === 5) {
             return;
         }
         const newElement = {
-            ...item,
-            number: item.number + 1,
-            price: (item.price / item.number) * (item.number + 1),
+            ...element,
+            number: element.number + 1,
+            price: (element.price / element.number) * (element.number + 1),
         };
         setElement(newElement);
         dispatch(updateItem(newElement));
     };
 
-    const removeElement = () => {
-        dispatch(deleteItem(item));
+    const removeElement = (event) => {
+        event.stopPropagation();
+        dispatch(deleteItem(element));
+    };
+
+    const goToItem = () => {
+        history.push(`/item?id=${element.id}`);
     };
 
     return (
-        <CardStyles>
-            <Cross onClick={removeElement} icon={faTimes}/>
-            <CardImage alt="Player" src={item.imageOfPlayer}/>
-            <TextStyled>{item.name}</TextStyled>
+        <CardStyles onClick={goToItem}>
+            <Cross onClick={removeElement} icon={faTimes} />
+            <CardImage alt="Player" src={element.imageOfPlayer} />
+            <TextStyles>{element.name}</TextStyles>
             <StyledCounter>
                 <ButtonSmall onClick={increaseItemNumber}>
-                    <PlusStyled/>
+                    <PlusStyles />
                 </ButtonSmall>
-                <TextStyled>{item.number}</TextStyled>
+                <TextStyles>{element.number}</TextStyles>
                 <ButtonSmall>
-                    <MinusStyled onClick={reduceItemNumber}/>
+                    <MinusStyles onClick={reduceItemNumber} />
                 </ButtonSmall>
             </StyledCounter>
-            <TextStyled>{item.price} euro</TextStyled>
+            <TextStyles>{element.price} euro</TextStyles>
         </CardStyles>
     );
 };
 
-export default NewCard;
+export default AddedCard;

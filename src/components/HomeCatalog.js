@@ -5,12 +5,12 @@ import {
     ButtonStyles,
     CatalogContainer,
 } from "../styles/HomeCatalogStyles";
-import ContainerItem from "./ContainerItem";
 import ElementsContext from "./Context";
+import ContainerItem from "./ContainerItem";
 
 
 const HomeCatalog = () => {
-    const { source } = useContext(ElementsContext);
+    const {source} = useContext(ElementsContext);
     useEffect(() => {
         setData(source.slice(0, 2));
     }, [source]);
@@ -35,14 +35,14 @@ const HomeCatalog = () => {
 
     return (
         <CatalogContainer>
-            <TitleStyles>Choose a debutant from this list:</TitleStyles>
+            <TitleStyles> Choose your player from this list:</TitleStyles>
             <ContainerCards>
                 <ContainerItem products={data} currentView="card"/>
             </ContainerCards>
             {!isShowMore && (
                 <ButtonStyles onClick={() => showMore()}>View More</ButtonStyles>
             )}
-            {isShowMore && <ButtonStyles onClick={showLess}>Hidden</ButtonStyles>}
+            {isShowMore && <ButtonStyles onClick={showLess}>View Less</ButtonStyles>}
         </CatalogContainer>
     );
 };

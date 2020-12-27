@@ -1,4 +1,9 @@
-import { createAdded, deleteAdded, updateAdded } from "./Constants";
+import {
+    createAdded,
+    deleteAdded,
+    resetAdded,
+    updateAdded,
+} from "./Variables";
 
 const changeItem = (state, action) => {
     let orders = state.orders.slice();
@@ -24,7 +29,7 @@ const deleteItem = (state, action) => {
 const calculatePrice = (data) => {
     let sum = 0;
     for (let value of Object.values(data)) {
-        sum += value.price;
+        sum += value.price_in_uah;
     }
     return sum;
 };
@@ -56,6 +61,11 @@ const reduxUtils = (state = {}, action) => {
             return {
                 orders,
                 totalPrice: calculatePrice(orders),
+            };
+        case resetAdded:
+            return {
+                orders: [],
+                totalPrice: 0,
             };
         default:
             return state;

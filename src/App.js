@@ -6,9 +6,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import ElementsContext from "./components/Context";
 import { fetchData } from "./CRUD";
 import { Provider } from "react-redux";
-import store from "./components/redux/Store";
+import store from "./components/redux/Transfermarket";
 
-library.add(faShoppingCart, faArrowLeft);
+// library.add(faShoppingCart, faArrowLeft);
 
 function App() {
     const [source, setSource] = useState([]);

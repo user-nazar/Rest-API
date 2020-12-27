@@ -12,6 +12,7 @@ import {
 import {useHistory} from "react-router-dom";
 import description from "./UtilsInfo";
 
+
 const Card = ({player}) => {
     return (
         <div>
@@ -53,7 +54,7 @@ const AllInfo = ({player}) => {
                         setVisible(false);
                     }}
                 >
-                    Collapse
+                    View Less
                 </ButtonLessStyles>
             </MoreInfo>
         </React.Fragment>

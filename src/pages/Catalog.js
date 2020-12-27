@@ -1,17 +1,16 @@
 import React, {useState, useEffect, useContext} from "react";
-
 import {Menu} from "antd";
 
-
-import {AutoCompleteStyles, MenuItemStyles, MenuStyles, ViewComponent} from "../styles/CatalogStyles";
 import ElementsContext from "../components/Context";
 import {CatalogState} from "../components/Source";
 import {changeCatalogState, executeFilters, findBy} from "../components/Utils";
-import ContainerItem from "../components/ContainerItem";
 import ProcessOfLoading from "../components/ProcessOfLoading";
+import ContainerItem from "../components/ContainerItem";
+import {AutoCompleteStyles, MenuItemStyles, MenuStyles, ViewComponent} from "../styles/CatalogStyles";
 
 
 const {SubMenu} = Menu;
+
 
 const Catalog = () => {
     const {source} = useContext(ElementsContext);
