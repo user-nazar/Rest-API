@@ -5,7 +5,6 @@
 Description: You are on your way to finishing this insane project… Create the first of three cart pages - Shopping cart page.
 Also, here you meet one of the most popular React library - Redux.
 
-Variants -  (products that you are ‘selling’) the same as for previous works. (see the description to 3rd work)
 
 Requirements: 
 All of the requirements for previous React.js works should be kept.
