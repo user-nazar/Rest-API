@@ -10,48 +10,82 @@ import {
     DescriptionStyles,
 
 } from "../styles/ItemStyles";
-import {data} from "./List";
-import {useLocation, Redirect} from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import {Image} from "antd";
 import description from "./UtilsInfo";
+import {fetchDataById, patchData} from "../CRUD";
+import ProcessOfLoading from "./ProcessOfLoading";
+import {useDispatch} from "react-redux";
+import {createItem} from "./redux/Action";
 
 const Item = () => {
     const [item, setItem] = useState({});
-    const [redirect, setRedirect] = useState(false);
-
+    const dispatch = useDispatch()
     const location = useLocation();
     const totalPrice = useRef(null);
 
+    let history = useHistory();
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
         const id = parseInt(location.search.split("=")[1]);
-        const foundItem = data.find((element) => element.id === id);
-        setItem(foundItem);
-        totalPrice.current = foundItem.price_in_mln_euro;
+        fetchDataById(id)
+            .then(([foundItem]) => {
+                setItem(foundItem);
+                patchData(foundItem);
+            })
+            .catch(() => {
+                console.log("Error download");
+            });
     }, []);
 
+    useEffect(() => {
+        if (item === undefined) {
+            return;
+        }
+        totalPrice.current = item.price;
+    }, [item]);
+
+
+    const goToCard = () => {
+        dispatch(
+            createItem({
+                id: item.id,
+                name: item.name,
+                price: totalPrice.current,
+                imageOfPlayer: item.imageOfPlayer,
+                number: 1,
+            })
+        );
+    };
+
+    if (Object.keys(item).length === 0) {
+        return <ProcessOfLoading/>;
+    }
 
     return (
         <StyledItem>
             <TopPart>
-                <Image src={item.image}/>
+                <Image src={item.imageOfPlayer}/>
                 <ItemInfo>
                     <NameStyles>{item.name}</NameStyles>
+
                     <DescriptionStyles>{description(item)}</DescriptionStyles>
 
                 </ItemInfo>
             </TopPart>
             <BottomPart>
-                <StyledPrice>Price: {totalPrice.current} euro</StyledPrice>
+                <StyledPrice>Price: {item.price} euro</StyledPrice>
                 <ButtonItemStyles
-                    onClick={() => setRedirect(true)}
+                    onClick={history.goBack}
                 >
                     Return
                 </ButtonItemStyles>
-                {redirect && <Redirect push to="/catalog"/>}
-                <ButtonItemStyles>
-                    Add
+
+                <ButtonItemStyles onClick={goToCard}>
+
+                    Add a new card
                 </ButtonItemStyles>
             </BottomPart>
         </StyledItem>

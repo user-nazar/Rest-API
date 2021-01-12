@@ -17,11 +17,11 @@ const Card = ({player}) => {
         <div>
             <CardStyles
                 hoverable
-                cover={<CardImage alt="Player" src={player.image}/>}
+                cover={<CardImage alt="Player" src={player.imageOfPlayer}/>}
             >
                 <Footer>
-                    <MetaStyles title={player.name}/>
-                    <TextStyles>Price: {player.price_in_mln_euro} euro</TextStyles>
+                    <MetaStyles title={player.name} description={player.description}/>
+                    <TextStyles>Price: {player.price} euro</TextStyles>
                     <AllInfo player={player}/>
                 </Footer>
             </CardStyles>
@@ -37,10 +37,10 @@ const AllInfo = ({player}) => {
     let history = useHistory();
 
     return (
-        <div>
+        <React.Fragment>
             <ButtonStyles onClick={() => setVisible(true)}>View More</ButtonStyles>
             <MoreInfo height={visible ? 1 : 0}>
-                <MetaStyles name={player.name} description={description(player)}/>
+                <MetaStyles title={player.title} description={description(player)}/>
                 <ButtonStyles
                     onClick={() => {
                         history.push(`/item?id=${player.id}`);
@@ -53,9 +53,9 @@ const AllInfo = ({player}) => {
                         setVisible(false);
                     }}
                 >
-                    View Less
+                    Collapse
                 </ButtonLessStyles>
             </MoreInfo>
-        </div>
+        </React.Fragment>
     );
 };

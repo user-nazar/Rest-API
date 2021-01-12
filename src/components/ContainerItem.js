@@ -1,7 +1,7 @@
 import React from "react";
+import {Flipper, Flipped} from "react-flip-toolkit";
 import {EntityContainer} from "../styles/ContainerItemStyles";
 import Card from "./Card";
-import {Flipper, Flipped} from "react-flip-toolkit";
 
 const ContainerItem = ({products}) => {
     return (
@@ -11,7 +11,7 @@ const ContainerItem = ({products}) => {
                     return (
                         <Flipped key={player.id} flipId={player.id}>
                             <div>
-                                <Card player ={player}/>
+                                <Card player={player}/>
                             </div>
                         </Flipped>
                     );
