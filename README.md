@@ -1,4 +1,3 @@
-
 # Task: Connecting to REST API
 
 Description: Finally! Now, you are about to put a final touches on all pages you created - implement interaction with your REST API server.
